@@ -12,16 +12,16 @@ A mobile web application where you can manage your budget: you have a list of tr
 **installed on your local environment**
 
 - **To get a local copy of the repository please run the following commands on your terminal:**
-- `git clone https://github.com/mmsesay/pense-app.git`
-- `cd pense-app`
-- `bundle install` to couple all dependacies
-- `rails s` to start the server
+   - `git clone https://github.com/mmsesay/pense-app.git`
+   - `cd pense-app`
+   - `bundle install` to couple all dependacies
+   - `./bin/dev` to start the server
 
 - **To run the tests please run the following commands on your terminal:**
-- `git clone https://github.com/mmsesay/pense-app.git`
-- `cd pense-app`
-- `bundle install` to couple all dependacies
-- `rails spec` 
+    - `git clone https://github.com/mmsesay/pense-app.git`
+    - `cd pense-app`
+    - `bundle install` to couple all dependacies
+    - `rails spec` 
 
 👤 **Muhammad Sesay**
 
