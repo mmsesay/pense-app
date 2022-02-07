@@ -1,1 +1,13 @@
-<h1 class="text-7xl font-bold underline bg-yellow-500 text-green-300"> Splash screen</h1>
+<div class="bg-white h-screen">
+  <div class="h-3/4 flex items-center justify-center">
+    <h1 class="text-4xl font-bold text-primary-gray">Pense</h1>
+  </div>
+  <div class="h-1/4 flex flex-col space-y-5 mx-5">
+    <button class="bg-primary-blue h-14 font-semibold text-white">
+      <%= link_to 'LOGIN', new_user_session_path %>
+    </button>
+    <button class="bg-white h-14 font-semibold border text-primary-gray">
+      <%= link_to 'SIGN UP', new_user_registration_path %>
+    </button>
+  </div>
+</div>
