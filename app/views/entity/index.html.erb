@@ -1,0 +1,6 @@
+<h1>Entities</h1>
+
+<p><%= current_user.email %></p>
+<a class="text-blue-400 cursor-pointer bg-yellow-300">
+  <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+</a>
