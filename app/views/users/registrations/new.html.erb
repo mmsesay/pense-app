@@ -18,7 +18,8 @@
         <div class="h-14 w-14 rounded-full bg-gray-400">
           <%# <p class="absolute">U</p> %>
         </div>
-        <p>Upload picture</p>
+
+        <%= f.file_field :profile_pic %>
       </div>
 
       <%= f.text_field :name,
@@ -36,6 +37,11 @@
       <%= f.password_field :password, 
         autocomplete: "current-password",
         placeholder: "Password",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <%= f.password_field :password_confirmation,
+        autocomplete: "new-password",
+        placeholder: "Confirm Password",
         class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
     </div>
   </div>
