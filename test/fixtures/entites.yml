@@ -2,10 +2,12 @@
 
 one:
   name: MyString
-  icon: MyString
+  amount: 9.99
+  group: one
   user: one
 
 two:
   name: MyString
-  icon: MyString
+  amount: 9.99
+  group: two
   user: two
