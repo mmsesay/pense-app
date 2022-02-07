@@ -3,11 +3,10 @@
     <h1 class="text-4xl font-bold text-primary-gray">Pense</h1>
   </div>
   <div class="h-1/4 flex flex-col space-y-5 mx-5">
-    <button class="bg-primary-blue h-14 font-semibold text-white">
-      <%= link_to 'LOGIN', new_user_session_path %>
-    </button>
-    <button class="bg-white h-14 font-semibold border text-primary-gray">
-      <%= link_to 'SIGN UP', new_user_registration_path %>
-    </button>
+    <%= link_to 'LOGIN', new_user_session_path,
+      class: "bg-primary-blue h-14 font-semibold text-white text-center py-3" %>
+
+    <%= link_to 'SIGN UP', new_user_registration_path,
+      class: "bg-white h-14 font-semibold border text-primary-gray text-center py-3" %>
   </div>
 </div>
