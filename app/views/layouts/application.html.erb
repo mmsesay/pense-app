@@ -14,10 +14,12 @@
   <body>
     <main>
       <%= yield %>
-      <div class="my-10 mx-10 text-center bg-blue-50 border border-blue-400 text-blue-800 p-4 rounded-md">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
+      <% if notice || alert %>
+        <div class="my-10 mx-10 text-center bg-blue-50 border border-blue-400 text-blue-800 p-4 rounded-md">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>
+      <% end %>
     </main>
   </body>
 </html>
