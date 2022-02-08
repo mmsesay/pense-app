@@ -2,12 +2,13 @@ class GroupController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @groups = current_user.groups
+    session[:is_transaction_triggered_from_detail] = nil
+    session[:group_id] = nil
+    @groups = current_user.groups.includes(:entities)
   end
 
   def show
-    @group = Group.find(params[:id])
-    # @food_with_recipes = @recipe.group.includes(:food)
+    @group = Group.includes(:entities).find(params[:id])
   end
 
   def new

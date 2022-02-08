@@ -36,10 +36,12 @@
         placeholder: "Transaction amount",
         class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
 
-      <% if @groups != nil %>
-      <%= f.collection_select :group_id, @groups, :id, :name,
-        include_blank: 'Select a category',
-        class: "appearance-none block w-screen px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+      <% if session[:is_transaction_triggered_from_detail] == {}
+ %>
+      <%= session[:is_transaction_triggered_from_detail] %>
+        <%= f.collection_select :group_id, @groups, :id, :name,
+          include_blank: 'Select a category',
+          class: "appearance-none block w-screen px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
       <% end %>
 
       <div class="flex items-center justify-center mt-16">
