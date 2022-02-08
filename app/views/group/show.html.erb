@@ -1,0 +1,67 @@
+<div class="bg-gray-200">
+  <div class="fixed top-0 z-20 w-full">
+    <div class="bg-primary-blue h-auto py-5">
+      <div class="flex items-center justify-between text-white px-4">
+        <button>
+          <%= link_to "<-", group_path %>
+        </button>
+        <p>Detail</p>
+        <p class="invisible">hidden</p>
+      </div>
+      <div class="flex items-center justify-center mt-5 space-x-5 text-white">
+        <a class="cursor-pointer">
+          <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-auto z-10 pt-28 pb-36">
+    <div class="py-2 px-3">
+      <div class="bg-white rounded h-auto p-2 space-x-3 shadow-md">
+        <div class="flex items-center mb-2">
+          <div class="h-16 w-16">
+            <% if @group.icon.attached? %>
+              <%= image_tag @group.icon, alt: "group-photo" %>
+            <% end %>
+          </div>
+          <p class="text-gray-500 ml-5"><%= @group.name %></p>
+        </div>
+        
+        <% @group.entities.order('created_at desc').each do |transaction| %>
+          <div class="text-gray-500 text-sm mt-4 border-t">
+            <div class="my-3 py-2">
+              <p class="font-semibold pb-2">
+                <%= transaction.name %>
+              </p>
+              <div class="flex justify-between">
+                <p>
+                  <%= transaction.created_at.strftime("%e %b, %Y at %H:%M") %>
+                </p>
+                <p>$ <%= transaction.amount %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="flex justify-between items-center py-2 border-t">
+          <% if @group.entities.exists? %>
+            <p class="text-gray-500">TOTAL PAYMENT</p>
+            <p class="font-semibold">$<%= @group.entities.sum(:amount) %></p>
+          <% else %>
+            <p class="text-center font-semibold pb-2">No transactions available</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-primary-green h-24 flex items-center justify-center p-4 fixed bottom-0 z-20 w-full">
+  <%= link_to transactions_new_path do %>
+    <% session[:is_transaction_triggered_from_detail] = "/group/:id/transactions", session[:group_id] = @group.id %>
+    <div class="border border-2 border-white w-full h-16 text-white flex items-center justify-center rounded-md px-16">
+      <p>ADD TRANSACTION</p>
+    </div>
+  <% end %>
+</div>
