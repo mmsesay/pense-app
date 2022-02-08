@@ -5,7 +5,10 @@ class GroupController < ApplicationController
     @groups = current_user.groups
   end
 
-  def show; end
+  def show
+    @group = Group.find(params[:id])
+    # @food_with_recipes = @recipe.group.includes(:food)
+  end
 
   def new
     @group = Group.new
