@@ -49,7 +49,9 @@
 </div>
 
 <div class="bg-primary-green h-24 flex items-center justify-center p-4 fixed bottom-0 z-20 w-full">
-  <div class="border border-2 border-white w-full h-16 text-white flex items-center justify-center rounded-md">
-    <p>SCAN</p>
-  </div>
+  <%= link_to transactions_new_path do %>
+    <div class="border border-2 border-white w-full h-16 text-white flex items-center justify-center rounded-md px-16">
+      <p>ADD NEW TRANSACTION</p>
+    </div>
+  <% end %>
 </div>
