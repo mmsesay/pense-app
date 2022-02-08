@@ -1,9 +1,7 @@
 class GroupController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :clear_sessions
 
   def index
-    session[:is_transaction_triggered_from_detail] = nil
-    session[:group_id] = nil
     @groups = current_user.groups.includes(:entities)
   end
 
@@ -30,5 +28,10 @@ class GroupController < ApplicationController
 
   def new_group_params
     params.require(:group).permit(:name, :icon)
+  end
+
+  def clear_sessions
+    session[:is_transaction_triggered_from_detail] = nil
+    session[:group_id] = nil
   end
 end
