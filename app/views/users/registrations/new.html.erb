@@ -1,29 +1,48 @@
-<h2>Sign up</h2>
+<%= form_with model: @user, url: user_registration_path do |f| %>
+  <div>
+    <div class="bg-primary-blue h-14 flex items-center justify-between text-white px-4">
+      <button>
+        <%= link_to "<-", root_path %>
+      </button>
+      <p>REGISTER</p>
+      <button>
+        <div class="actions">
+          <%= f.submit "Next", class: 'cursor-pointer' %>
+        </div>
+      </button>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+    <div class="mt-10 text-primary-gray">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="appearance-none block w-full px-3 py-2 border border-gray-300 h-24 focus:outline-none focus:ring-primary-blue focus:border-primary-blue flex items-center space-x-10 px-2">
+        <div class="h-14 w-14 rounded-full bg-gray-400">
+          <%# <p class="absolute">U</p> %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <%= f.file_field :profile_pic %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <%= f.text_field :name,
+        autofocus: true,
+        autocomplete: "name",
+        placeholder: "Full name",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+      <%= f.email_field :email,
+        autofocus: true,
+        autocomplete: "email",
+        placeholder: "Email",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <%= f.password_field :password, 
+        autocomplete: "current-password",
+        placeholder: "Password",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <%= f.password_field :password_confirmation,
+        autocomplete: "new-password",
+        placeholder: "Confirm Password",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+    </div>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
