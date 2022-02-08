@@ -1,0 +1,50 @@
+<div class="bg-gray-200">
+  <div class="fixed top-0 z-20 w-full">
+    <div class="bg-primary-blue h-auto py-5">
+      <div class="flex items-center justify-between text-white px-4">
+        <button>
+          <%= link_to "<-", group_path %>
+        </button>
+        <p>Detail</p>
+        <p class="invisible">hidden</p>
+      </div>
+      <div class="flex items-center justify-center mt-5 space-x-5 text-white">
+        <a class="cursor-pointer">
+          <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-auto z-10 pt-28 pb-36">
+    <div class="py-2 px-3">
+      <div class="bg-white rounded h-auto p-2 space-x-3 shadow-md">
+        <div class="flex items-center">
+          <div class="h-16 w-16">
+            <%= image_tag "macdonalds.png", alt: "card-photo" %>
+          </div>
+          <p class="text-gray-500 ml-5">Mac Donalds fastfood</p>
+        </div>
+        
+        <%# @TODO: add loop here transactions %>
+        <div class="text-gray-500 text-sm mt-4 border-t border-b">
+          <div class="my-3 py-2">
+            <p class="font-semibold pb-2">Transcation Number 0</p>
+            <p>12 Apr 2014 at 3:00pm</p>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center py-2">
+          <p class="text-gray-500">TOTAL PAYMENT</p>
+          <p class="font-semibold">$17.00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-primary-green h-24 flex items-center justify-center p-4 fixed bottom-0 z-20 w-full">
+  <div class="border border-2 border-white w-full h-16 text-white flex items-center justify-center rounded-md">
+    <p>ADD TRANSACTION</p>
+  </div>
+</div>

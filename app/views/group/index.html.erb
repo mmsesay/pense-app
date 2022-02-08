@@ -1,0 +1,55 @@
+<div class="bg-gray-200">
+  <div class="fixed top-0 z-20 w-full">
+    <div class="bg-primary-blue h-auto py-5">
+      <div class="flex items-center justify-between text-white px-4">
+        <button>
+          <%= link_to "<-", root_path %>
+        </button>
+        <p>Category</p>
+        <button>
+          <div class="actions">
+            O
+          </div>
+        </button>
+      </div>
+      <div class="flex items-center justify-center mt-5 space-x-5 text-white">
+        <a class="cursor-pointer">
+          <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+        </a>
+      </div>
+    </div>
+    <div class="bg-white shadow-xl h-14 flex items-center justify-between px-4">
+      <p class="text-gray-500">Hello, <%= current_user.name%></p>
+      <p class="text-gray-700 font-semibold"></p>
+    </div>
+  </div>
+
+  <div class="h-auto z-10 pt-44 pb-36">
+    <% 8.times do %>
+      <div class="py-2 px-3">
+        <%= link_to group_path(1) do %>
+          <div class="bg-white flex rounded h-auto p-2 space-x-3 shadow-md">
+            <div class="h-16 w-16">
+              <%= image_tag "macdonalds.png", alt: "card-photo" %>
+            </div>
+            <div class="flex flex-col justify-between">
+              <div class="flex justify-between text-sm">
+                <p class="text-gray-500 mr-10">Mac Donalds fastfood</p>
+                <p class="text-gray-700 font-semibold">$17.00</p>
+              </div>
+              <div>
+                <p class="text-gray-500 text-sm">12 Apr 2004</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="bg-primary-green h-24 flex items-center justify-center p-4 fixed bottom-0 z-20 w-full">
+  <div class="border border-2 border-white w-full h-16 text-white flex items-center justify-center rounded-md">
+    <p>ADD NEW CATEGORY</p>
+  </div>
+</div>
