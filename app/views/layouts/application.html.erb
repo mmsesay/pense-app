@@ -13,9 +13,11 @@
 
   <body>
     <main>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
+      <div class="my-10 mx-10 text-center bg-blue-50 border border-blue-400 text-blue-800 p-4 rounded-md">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
     </main>
   </body>
 </html>
