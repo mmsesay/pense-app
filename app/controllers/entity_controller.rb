@@ -33,6 +33,23 @@ class EntityController < ApplicationController
     end
   end
 
+  def edit
+    @entity = Entite.find(params[:id])
+    @groups = Group.all
+  end
+
+  def update
+    @entity = Entite.find(params[:id])
+
+    if @entity.update(transaction_params)
+      flash[:notice] = "Transaction updated successfully"
+      redirect_to single_group_path(@entity.group_id)
+    else
+      @groups = Group.all
+      render :edit
+    end
+  end
+
   private
 
   def transaction_params_without_group_id

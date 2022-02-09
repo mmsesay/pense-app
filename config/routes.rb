@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/transactions', to: 'entity#index'
   get '/transactions/new', to: 'entity#new'
   post '/transactions/new', to: 'entity#create'
+  get '/transactions/:id/edit', to: 'entity#edit', as: :update_transaction
+  patch '/transactions/:id/edit', to: 'entity#update'
 
   # Defines the root path route ("/")
   root "splash#index"
