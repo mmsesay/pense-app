@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/group/:id/transactions', to: 'group#show', as: :single_group
   get '/group/:id/edit', to: 'group#edit', as: :update_group
   patch '/group/:id/edit', to: 'group#update'
-  delete '/group/:id/delete', to: 'group#destroy', as: :delete_group
+  get '/group/:id/delete', to: 'group#destroy', as: :delete_group
   get '/transactions', to: 'entity#index'
   get '/transactions/new', to: 'entity#new'
   post '/transactions/new', to: 'entity#create'
