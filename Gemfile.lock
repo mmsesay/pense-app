@@ -97,8 +97,6 @@ GEM
     digest (3.1.0)
     erubi (1.10.0)
     ffi (1.15.5)
-    font-awesome-rails (4.7.0.8)
-      railties (>= 3.2, < 8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.9.1)
@@ -113,6 +111,9 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -218,6 +219,9 @@ GEM
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -246,9 +250,9 @@ DEPENDENCIES
   capybara
   debug
   devise
-  font-awesome-rails
   importmap-rails
   jbuilder
+  jquery-turbolinks
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.1)

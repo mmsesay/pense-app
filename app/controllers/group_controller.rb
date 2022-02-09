@@ -39,6 +39,13 @@ class GroupController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    flash[:notice] = 'Category deleted'
+    redirect_to group_path
+  end
+
   private
 
   def group_params
