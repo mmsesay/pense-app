@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PenseApp</title>
+    <title>Pense App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <main>
-      <%= yield %>
-      <% if notice || alert %>
-        <div class="h-52">
-          <div class="my-5 mx-10 text-center bg-blue-50 border border-blue-400 text-blue-800 p-4 rounded-md">
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-          </div>
-        </div>
-      <% end %>
+      <%= yield %>     
     </main>
   </body>
 </html>

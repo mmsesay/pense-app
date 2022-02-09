@@ -1,0 +1,48 @@
+<div>
+  <div class="bg-primary-blue h-auto py-5">
+    <div class="flex items-center justify-between text-white px-4">
+      <button>
+        <%= link_to "<-", single_group_path(@group) %>
+      </button>
+      <p>Editing Category</p>
+      <button>
+        <div class="actions">
+          O
+        </div>
+      </button>
+    </div>
+    <div class="flex items-center justify-center mt-5 space-x-5 text-white">
+      <a class="cursor-pointer">
+        <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+      </a>
+    </div>
+  </div>
+</div>
+
+<%= form_with model: @group, url: update_group_path do |f| %>
+  <div class="">
+    <div class="mt-10 text-primary-gray">
+      <%= f.text_field :name,
+        autofocus: true,
+        autocomplete: "name",
+        placeholder: "Category Name",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <div class="appearance-none block w-full px-3 py-4 border border-gray-300 h-auto focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+        <div class="h-16 w-16">
+          <% if @group.icon.attached? %>
+            <%= image_tag @group.icon, alt: "group-photo" %>
+          <% end %>
+        </div>
+        <label class="mb-4">Update Icon</label>
+        <%= f.file_field :icon %>
+      </div>
+
+      <div class="flex items-center justify-center mt-16">
+        <div class="actions">
+          <%= f.submit "UPDATE", class: 'cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

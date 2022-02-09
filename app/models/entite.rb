@@ -3,5 +3,6 @@ class Entite < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true
-  validates :icon, presence: true
+  validates :amount, presence: true
+  validates :group_id, presence: true
 end

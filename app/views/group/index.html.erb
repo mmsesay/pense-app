@@ -1,33 +1,33 @@
-<div class="bg-gray-200 h-screen pb-0">
+<div class="bg-gray-200 h-auto">
   <div class="fixed top-0 z-20 w-full">
     <div class="bg-primary-blue h-auto py-5">
       <div class="flex items-center justify-between text-white px-4">
         <button>
-          <%= link_to "<-", root_path %>
+          <%# <%= link_to "<-", root_path %>
+          <%= image_tag "hamburger-menu.svg", alt: "group-photo", class: "h-5" %>
         </button>
-        <p>Category</p>
-        <button>
-          <div class="actions">
-            O
-          </div>
+        <p class="w-full text-center">Category</p>
+        <button class="cursor-pointer bg-red-200">
+          <%= button_to destroy_user_session_path, method: :delete do %>
+            <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
+          <% end %>
         </button>
       </div>
       <div class="flex items-center justify-center mt-5 space-x-5 text-white">
         <a class="cursor-pointer">
           <%= link_to 'View transactions', transactions_path %>
         </a>
-        <a class="cursor-pointer">
-          <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
-        </a>
       </div>
     </div>
-    <div class="bg-white shadow-xl h-14 flex items-center justify-between px-4">
+    <div class="shadow-xl h-14 flex items-center justify-between px-4 bg-white">
       <p class="text-gray-500">Hello, <%= current_user.name%></p>
       <p class="text-gray-700 font-semibold"></p>
     </div>
   </div>
 
   <div class="h-auto z-10 pt-44 pb-32">
+    <%= render partial: "partials/notices" %>
+
     <% @groups.each do |group| %>
       <div class="py-2 px-3">
         <%= link_to single_group_path(group) do %>

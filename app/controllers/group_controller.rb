@@ -14,7 +14,7 @@ class GroupController < ApplicationController
   end
 
   def create
-    @new_group = current_user.groups.new(new_group_params)
+    @new_group = current_user.groups.new(group_params)
 
     if @new_group.save
       flash[:notice] = "New category created successfully"
@@ -24,9 +24,31 @@ class GroupController < ApplicationController
     end
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+
+    if @group.update(group_params)
+      flash[:notice] = "Category updated successfully"
+      redirect_to single_group_path(@group)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    flash[:notice] = 'Category deleted'
+    redirect_to group_path
+  end
+
   private
 
-  def new_group_params
+  def group_params
     params.require(:group).permit(:name, :icon)
   end
 
