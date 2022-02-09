@@ -38,10 +38,19 @@
     </div>
   </div>
 
+  <%# show group card if on group page %>
   <% if request.path == group_path %>
     <div class="shadow-xl h-14 flex items-center justify-between px-4 bg-white">
       <p class="text-gray-500">Hello, <%= current_user.name%></p>
       <p class="text-gray-700 font-semibold"></p>
+    </div>
+  <% end %>
+
+  <%# show gift card if on transaction page %>
+  <% if request.path == transactions_path %>
+    <div class="bg-white shadow-xl h-14 flex items-center justify-between px-4">
+      <p class="text-gray-500">Gift credit</p>
+      <p class="text-gray-700 font-semibold">$<%= @transactions.sum(:amount) || 0 %></p>
     </div>
   <% end %>
 </div>
