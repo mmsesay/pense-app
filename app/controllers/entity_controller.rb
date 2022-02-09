@@ -50,6 +50,17 @@ class EntityController < ApplicationController
     end
   end
 
+  def destroy
+    @entity = Entite.find(params[:id])
+
+    # keep a copy of the deleted entity group
+    @group_id = @entity.group_id
+    @entity.destroy
+
+    flash[:notice] = 'Transaction deleted'
+    redirect_to single_group_path(@group_id)
+  end
+
   private
 
   def transaction_params_without_group_id

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/transactions/new', to: 'entity#create'
   get '/transactions/:id/edit', to: 'entity#edit', as: :update_transaction
   patch '/transactions/:id/edit', to: 'entity#update'
+  get '/transactions/:id/delete', to: 'entity#destroy', as: :delete_transaction
 
   # Defines the root path route ("/")
   root "splash#index"
