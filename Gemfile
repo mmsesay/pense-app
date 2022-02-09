@@ -9,11 +9,10 @@ gem "rails", "~> 7.0.1"
 # devise for authentication
 gem 'devise'
 
-# font awesome
-gem "font-awesome-rails"
-
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
+
+gem 'sass-rails'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"

@@ -3,21 +3,19 @@
     <div class="bg-primary-blue h-auto py-5">
       <div class="flex items-center justify-between text-white px-4">
         <button>
-          <%= link_to "<-", root_path %>
+          <%# <%= link_to "<-", root_path %>
+          <%= image_tag "hamburger-menu.svg", alt: "group-photo", class: "h-5" %>
         </button>
-        <p>Category</p>
-        <button>
-          <div class="actions">
-            O
-          </div>
+        <p class="w-full text-center">Category</p>
+        <button class="cursor-pointer bg-red-200">
+          <%= button_to destroy_user_session_path, method: :delete do %>
+            <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
+          <% end %>
         </button>
       </div>
       <div class="flex items-center justify-center mt-5 space-x-5 text-white">
         <a class="cursor-pointer">
           <%= link_to 'View transactions', transactions_path %>
-        </a>
-        <a class="cursor-pointer">
-          <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
         </a>
       </div>
     </div>
