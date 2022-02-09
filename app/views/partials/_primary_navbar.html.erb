@@ -1,0 +1,47 @@
+<div class="fixed top-0 z-20 w-full">
+  <div class="bg-primary-blue h-auto py-5">
+    <div class="flex items-center justify-between text-white px-4">
+      <button>
+        <% if request.path == group_path %>
+          <%= image_tag "hamburger-menu.svg", alt: "group-photo", class: "h-5" %>
+        <% else %>
+          <%= link_to "<-", root_path, class: 'text-lg font-bold' %>
+        <% end %>
+      </button>
+      <p class="w-full text-center">
+        <% if request.path == group_path %>
+          CATEGORIES
+        <% elsif request.path == group_new_path %>
+          CREATE A CATEGORY
+        <% elsif request.path == transactions_path %>
+          TRANSACTIONS
+        <% elsif request.path == transactions_new_path %>
+          CREATE A TRANSACTION
+        <% elsif request.path == update_group_path %>
+          EDITING CATEGORY
+        <% elsif request.path == update_transaction_path %>
+          EDITING TRANSACTION
+        <% else %>
+          DETAILS
+        <% end %>
+      </p>
+      <button class="cursor-pointer bg-red-200">
+        <%= button_to destroy_user_session_path, method: :delete do %>
+          <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
+        <% end %>
+      </button>
+    </div>
+    <div class="flex items-center justify-center mt-5 space-x-5 text-white">
+      <a class="cursor-pointer">
+        <%= link_to 'View transactions', transactions_path %>
+      </a>
+    </div>
+  </div>
+
+  <% if request.path == group_path %>
+    <div class="shadow-xl h-14 flex items-center justify-between px-4 bg-white">
+      <p class="text-gray-500">Hello, <%= current_user.name%></p>
+      <p class="text-gray-700 font-semibold"></p>
+    </div>
+  <% end %>
+</div>

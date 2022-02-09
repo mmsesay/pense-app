@@ -1,89 +1,69 @@
-<div class="bg-gray-200 h-screen">
-  <div class="fixed top-0 z-20 w-full">
-    <div class="bg-primary-blue h-auto py-5">
-      <div class="flex items-center justify-between text-white px-4">
-        <button>
-          <%= link_to "<-", group_path %>
-        </button>
-        <p>Detail</p>
-        <p class="invisible">hidden</p>
-      </div>
-      <div class="flex items-center justify-center mt-5 space-x-5 text-white">
-        <a class="cursor-pointer">
-          <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
-        </a>
-      </div>
-    </div>
-  </div>
+<div class="h-auto z-10 pt-28 pb-36">
+  <div class="py-2 px-3">
+    <div class="bg-white rounded h-auto p-2 space-x-3 shadow-md">
 
-  <div class="h-auto z-10 pt-28 pb-36">
-    <%= render partial: "partials/notices" %>
-    <div class="py-2 px-3">
-      <div class="bg-white rounded h-auto p-2 space-x-3 shadow-md">
-
-        <%# category section %>
-        <div class="flex mb-2">
-          <div class="h-16 w-16">
-            <% if @group.icon.attached? %>
-              <%= image_tag @group.icon, alt: "group-photo" %>
-            <% end %>
-          </div>
-          <div class="flex flex-col justify-between ml-5">
-            <p class="text-gray-500 mb-2"><%= @group.name %></p>
-            <div class="flex space-x-8">
-              <span class="bg-gray-100 p-2 rounded-full">
-                <%= link_to update_group_path(@group) do %>
-                  <%= image_tag "edit-file.svg", alt: "edit-icon", class: "h-6" %>
-                <% end %>
-              </span>
-              <span class="bg-gray-100 p-2 rounded-full btn-open-popup">
-                  <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-6 cursor-pointer" %>
-                  <%= render partial: "partials/delete_confirm_popup",
-                    locals: { caller_delete_route: delete_group_path(@group) } %>
-              </span>
-            </div>
-          </div>
-        </div>
-        
-        <%# list of transactions for a single group %>
-        <% @group.entities.order('created_at desc').each do |transaction| %>
-          <div class="text-gray-500 text-sm mt-4 border-t">
-            <div class="my-3 py-1">
-              <div class="flex justify-between py-3">
-                <p class="font-semibold pb-2">
-                  <%= transaction.name %>
-                </p>
-                <div class="flex space-x-6">
-                <span class="bg-gray-100 p-2 rounded-full">
-                  <%= link_to update_transaction_path(transaction) do %>
-                    <%= image_tag "edit-file.svg", alt: "edit-icon", class: "h-5" %>
-                  <% end %>
-                  </span>
-                <span class="bg-gray-100 p-2 rounded-full btn-open-popup">
-                  <%= render partial: "partials/delete_confirm_popup",
-                    locals: { caller_delete_route:  delete_transaction_path(transaction) } %>
-                  <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-5" %>
-                </span>
-                </div>
-              </div>
-              <div class="flex justify-between">
-                <p>
-                  <%= transaction.created_at.strftime("%e %b, %Y at %H:%M") %>
-                </p>
-                <p>$ <%= transaction.amount %></p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-
-        <div class="flex justify-between items-center py-2 border-t">
-          <% if @group.entities.exists? %>
-            <p class="text-gray-500">TOTAL PAYMENT</p>
-            <p class="font-semibold">$<%= @group.entities.sum(:amount) %></p>
-          <% else %>
-            <p class="text-center font-semibold pb-2">No transactions available</p>
+      <%# category section %>
+      <div class="flex mb-2">
+        <div class="h-16 w-16">
+          <% if @group.icon.attached? %>
+            <%= image_tag @group.icon, alt: "group-photo" %>
           <% end %>
         </div>
+        <div class="flex flex-col justify-between ml-5">
+          <p class="text-gray-500 mb-2"><%= @group.name %></p>
+          <div class="flex space-x-8">
+            <span class="bg-gray-100 p-2 rounded-full">
+              <%= link_to update_group_path(@group) do %>
+                <%= image_tag "edit-file.svg", alt: "edit-icon", class: "h-6" %>
+              <% end %>
+            </span>
+            <span class="bg-gray-100 p-2 rounded-full btn-open-popup">
+                <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-6 cursor-pointer" %>
+                <%= render partial: "partials/delete_confirm_popup",
+                  locals: { caller_delete_route: delete_group_path(@group) } %>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <%# list of transactions for a single group %>
+      <% @group.entities.order('created_at desc').each do |transaction| %>
+        <div class="text-gray-500 text-sm mt-4 border-t">
+          <div class="my-3 py-1">
+            <div class="flex justify-between py-3">
+              <p class="font-semibold pb-2">
+                <%= transaction.name %>
+              </p>
+              <div class="flex space-x-6">
+              <span class="bg-gray-100 p-2 rounded-full">
+                <%= link_to update_transaction_path(transaction) do %>
+                  <%= image_tag "edit-file.svg", alt: "edit-icon", class: "h-5" %>
+                <% end %>
+                </span>
+              <span class="bg-gray-100 p-2 rounded-full btn-open-popup">
+                <%= render partial: "partials/delete_confirm_popup",
+                  locals: { caller_delete_route:  delete_transaction_path(transaction) } %>
+                <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-5" %>
+              </span>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <p>
+                <%= transaction.created_at.strftime("%e %b, %Y at %H:%M") %>
+              </p>
+              <p>$ <%= transaction.amount %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="flex justify-between items-center py-2 border-t">
+        <% if @group.entities.exists? %>
+          <p class="text-gray-500">TOTAL PAYMENT</p>
+          <p class="font-semibold">$<%= @group.entities.sum(:amount) %></p>
+        <% else %>
+          <p class="text-center font-semibold pb-2">No transactions available</p>
+        <% end %>
       </div>
     </div>
   </div>
