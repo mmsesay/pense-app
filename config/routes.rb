@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/group/new', to: 'group#new'
   post '/group/new', to: 'group#create'
   get '/group/:id/transactions', to: 'group#show', as: :single_group
+  get '/group/:id/edit', to: 'group#edit', as: :update_group
+  patch '/group/:id/edit', to: 'group#update'
   get '/transactions', to: 'entity#index'
   get '/transactions/new', to: 'entity#new'
   post '/transactions/new', to: 'entity#create'
