@@ -1,2 +1,4 @@
+<% session[:current_page] = "EDITING CATEGORY" %>
+
 <%= render partial: "partials/categoryForm",
   locals: { group_model: @group, group_path: update_group_path } %>

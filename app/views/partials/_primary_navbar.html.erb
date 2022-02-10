@@ -9,8 +9,7 @@
             <%= link_to "<-", root_path, class: 'text-lg font-bold' %>
           <% end %>
         </button>
-        <%= request.path %>
-        <%= render partial: "partials/pageTitle", locals: { current_page: "Category" } %>
+        <p class="w-full text-center"><%= session[:current_page] %></p>
         <button class="cursor-pointer">
           <%= button_to destroy_user_session_path, method: :delete do %>
             <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
@@ -85,7 +84,7 @@
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "add-categories.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to group_new_path do %>
@@ -96,18 +95,18 @@
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "payment-dollar.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to transactions_new_path do %>
-            <p class="flex justify-start">Account Transaction</p>
+            <p class="flex justify-start">Add Transaction</p>
             <div class="border-b border-gray-300 mt-3"></div>
           <% end %>
         </div>
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "categories.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to group_path do %>
@@ -118,7 +117,7 @@
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "money-transfer.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to transactions_path do %>

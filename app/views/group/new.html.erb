@@ -1,2 +1,4 @@
+<% session[:current_page] = "CREATE A CATEGORY" %>
+
 <%= render partial: "partials/categoryForm",
   locals: { group_model: @group, group_path: group_new_path } %>
