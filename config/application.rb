@@ -12,6 +12,9 @@ module PenseApp
     config.load_defaults 7.0
 
     config.assets.css_compressor = nil
+    config.action_mailer.default_url_options = { :host => 'https://pense-app.herokuapp.com' }
+    # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 
     # Configuration for the application, engines, and railties goes here.
     #
