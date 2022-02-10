@@ -7,5 +7,7 @@ class User < ApplicationRecord
   has_many :entities, class_name: 'Entite'
 
   validates :name, presence: true
-  validates :password, presence: true
+  validates :password, presence: true, :on => :create
+
+  has_one_attached :profile_pic
 end

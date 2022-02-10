@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
+
+  get '/user/:id/edit', to: 'user#edit', as: :update_user
+  patch '/user/:id/edit', to: 'user#update'
 
   get '/group', to: 'group#index'
   get '/group/new', to: 'group#new'

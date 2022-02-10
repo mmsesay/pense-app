@@ -1,3 +1,6 @@
 class UserController < ApplicationController
-  had_one_attached :profile_pic
+  def edit
+    @user = current_user
+    render "users/registrations/edit"
+  end
 end
