@@ -9,17 +9,10 @@ RSpec.feature 'Entite Index Page', type: :feature do
     click_button 'Log in'
   end
 
-  describe 'GET /transaction' do
+  describe 'GET /transactions' do
     it 'should see list of category' do
       visit transactions_path
       expect(page).to have_content 'TRANSACTIONS'
-    end
-  end
-
-  describe 'GET /transaction' do
-    it 'should see list of category' do
-      visit transactions_path
-      expect(page).to have_content 'Gift Credit'
     end
   end
 end
