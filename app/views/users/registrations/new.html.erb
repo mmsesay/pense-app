@@ -16,10 +16,12 @@
 
       <div class="appearance-none block w-full px-3 py-2 border border-gray-300 h-24 focus:outline-none focus:ring-primary-blue focus:border-primary-blue flex items-center space-x-10 px-2">
         <div class="h-14 w-14 rounded-full bg-gray-400">
-          <%# <p class="absolute">U</p> %>
+          <%= image_tag "user-gray.png", id: "preview_profile_pic_tag", class: "rounded-full h-full w-full" %>
         </div>
 
-        <%= f.file_field :profile_pic %>
+        <%= f.file_field :profile_pic, id: "profile_pic_tag", class: "hidden" %>
+        <label for="profile_pic_tag">Upload picture</label>
+
       </div>
 
       <%= f.text_field :name,

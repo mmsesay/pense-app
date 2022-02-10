@@ -8,6 +8,8 @@ const notice_card = document.querySelector('.notice-card');
 const menu_popup = document.querySelector('.menu-popup');
 const hamburger_menu_icon = document.querySelector('.hamburger-menu-icon')
 const close_menu_icon = document.querySelector('.close-menu-icon');
+const preview_profile_pic_tag = document.getElementById('preview_profile_pic_tag');
+const profile_pic_tag = document.getElementById('profile_pic_tag');
 
 if (btn_category_trash_icon) {
   btn_category_trash_icon.addEventListener('click', () => {
@@ -69,3 +71,13 @@ document.querySelectorAll('side-nav-links').forEach((link) => {
     document.body.style.overflow = 'scroll';
   });
 });
+
+// image preview befor upload
+if (profile_pic_tag) {
+  profile_pic_tag.addEventListener('change', (evt) => {
+    const [file] = profile_pic_tag.files
+    if (file) {
+      preview_profile_pic_tag.src = URL.createObjectURL(file)
+    }
+  });
+}
