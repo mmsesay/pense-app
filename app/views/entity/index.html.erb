@@ -1,5 +1,7 @@
+<% session[:current_page] = "TRANSACTIONS" %>
+
 <%# pass all transactions to the show card %>
-<%= render partial: "partials/showCard", locals: { view: "transaction", data: @transactions } %>
+<%= render partial: "partials/showCard", locals: { view: "transaction", data: @transactions }  %>
 
 <%# Add transaction button %>
 <%= render partial: "partials/addTransactionButton", locals: { addSessionVariable: false, group_id: nil } %>

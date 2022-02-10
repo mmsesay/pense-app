@@ -1,2 +1,4 @@
+<% session[:current_page] = "EDITING TRANSACTION" %>
+
 <%= render partial: "partials/transactionForm",
   locals: { entity_model: @entity, entity_path: update_transaction_path, groups: @groups } %>

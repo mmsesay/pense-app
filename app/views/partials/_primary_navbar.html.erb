@@ -1,58 +1,46 @@
 <% if user_signed_in? %>
-<div class="fixed top-0 z-20 w-full">
-  <div class="bg-primary-blue h-auto py-5">
-    <div class="flex items-center justify-between text-white px-4">
-      <button>
-        <% if request.path == group_path || request.path == transactions_path %>
-          <%= image_tag "hamburger-menu.svg", alt: "group-photo", class: "h-5 hamburger-menu-icon" %>
-        <% else %>
-          <%= link_to "<-", root_path, class: 'text-lg font-bold' %>
-        <% end %>
-      </button>
-      <p class="w-full text-center">
-        <% if request.path == group_path %>
-          CATEGORIES
-        <% elsif request.path == group_new_path %>
-          CREATE A CATEGORY
-        <% elsif request.path == transactions_path %>
-          TRANSACTIONS
-        <% elsif request.path == transactions_new_path %>
-          CREATE A TRANSACTION
-        <% elsif request.path == update_group_path %>
-          EDITING CATEGORY
-        <% elsif request.path == update_transaction_path %>
-          EDITING TRANSACTION
-        <% else %>
-          DETAILS
-        <% end %>
-      </p>
-      <button class="cursor-pointer">
-        <%= button_to destroy_user_session_path, method: :delete do %>
-          <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
-        <% end %>
-      </button>
+  <div class="fixed top-0 z-20 w-full">
+    <div class="bg-primary-blue h-auto py-5">
+      <div class="flex items-center justify-between text-white px-4">
+        <button>
+          <% if request.path == group_path || request.path == transactions_path %>
+            <%= image_tag "hamburger-menu.svg", alt: "group-photo", class: "h-5 hamburger-menu-icon" %>
+          <% else %>
+            <%= link_to "<-", root_path, class: 'text-lg font-bold' %>
+          <% end %>
+        </button>
+        <p class="w-full text-center"><%= session[:current_page] %></p>
+        <button class="cursor-pointer">
+          <%= button_to destroy_user_session_path, method: :delete do %>
+            <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
+          <% end %>
+        </button>
+      </div>
     </div>
+
+    <%# show group card if on group page %>
+    <% if request.path == group_path %>
+      <div class="shadow-xl h-14 flex items-center justify-between px-4 bg-white">
+        <p class="text-gray-500">Hello, <%= current_user.name%></p>
+        <p class="text-gray-700 font-semibold"></p>
+      </div>
+    <% end %>
+
+    <%# show gift card if on transaction page %>
+    <% if request.path == transactions_path %>
+      <div class="bg-white shadow-xl h-14 flex items-center justify-between px-4">
+        <p class="text-gray-500">Gift credit</p>
+        <p class="text-gray-700 font-semibold">$<%= @transactions.sum(:amount) || 0 %></p>
+      </div>
+    <% end %>
   </div>
-
-  <%# show group card if on group page %>
-  <% if request.path == group_path %>
-    <div class="shadow-xl h-14 flex items-center justify-between px-4 bg-white">
-      <p class="text-gray-500">Hello, <%= current_user.name%></p>
-      <p class="text-gray-700 font-semibold"></p>
-    </div>
-  <% end %>
-
-  <%# show gift card if on transaction page %>
-  <% if request.path == transactions_path %>
-    <div class="bg-white shadow-xl h-14 flex items-center justify-between px-4">
-      <p class="text-gray-500">Gift credit</p>
-      <p class="text-gray-700 font-semibold">$<%= @transactions.sum(:amount) || 0 %></p>
-    </div>
-  <% end %>
-</div>
+  <div class="pt-28">
+    <%= render partial: "partials/notices" %>
+  </div>
 <% end %>
 
 
+<%# menu popup %>
 <div class="fixed z-30 bg-primary-blue inset-0 overflow-y-hidden menu-popup hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div class="pt-4 px-4 pb-20 text-center">
     <div class="flex justify-end h-auto">
@@ -69,28 +57,34 @@
     <div class="mb-10">
       <div class="flex flex-col py-2 my-3 items-center justify-center text-white">
         <div class="h-28 w-28">
-          <%= image_tag "macdonalds.png", class: "rounded-full" %>
+          <% if current_user.profile_pic.attached? %>
+            <%= image_tag current_user.profile_pic, alt: "profile-photo", class: "rounded-full h-full w-full" %>
+          <% else %>
+            <%= image_tag "user-gray.png", class: "rounded-full h-full w-full" %>
+          <% end %>
         </div>
         <div class="text-2xl mt-4">
           <p><%= current_user.name %></p>
         </div>
       </div>
     </div>
-    <% end %>
 
+    
     <ul class="flex flex-col space-y-5 text-gray-300">
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
           <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
-          <p class="flex justify-start">Account Settings</p>
-          <div class="border-b border-gray-300 mt-3"></div>
+          <%= link_to update_user_path(current_user) do %>
+            <p class="flex justify-start">Account Settings</p>
+            <div class="border-b border-gray-300 mt-3"></div>
+          <% end %>
         </div>
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "add-categories.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to group_new_path do %>
@@ -101,18 +95,18 @@
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "payment-dollar.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to transactions_new_path do %>
-            <p class="flex justify-start">Account Transaction</p>
+            <p class="flex justify-start">Add Transaction</p>
             <div class="border-b border-gray-300 mt-3"></div>
           <% end %>
         </div>
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "categories.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to group_path do %>
@@ -123,7 +117,7 @@
       </li>
       <li class="flex items-center h-auto space-x-5">
         <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
-          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+          <%= image_tag "money-transfer.svg", class: "h-5 w-6" %>
         </div>
         <div class="w-full side-nav-links">
           <%= link_to transactions_path do %>
@@ -143,5 +137,6 @@
         </div>
       </li>
     </ul>
+    <% end %>
   </div>
 </div>

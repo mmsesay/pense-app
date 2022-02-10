@@ -1,5 +1,7 @@
-<div class="pt-28">
+<div class="bg-gray h-screen">
   <%= form_with model: group_model, url: group_path do |f| %>
+    <%= render "users/shared/error_messages", resource: group_model %>
+
     <div class="mt-10 text-primary-gray">
       <%= f.text_field :name,
         autofocus: true,
@@ -7,17 +9,25 @@
         placeholder: "Category Name",
         class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
 
-      <div class="appearance-none block w-full px-3 py-4 border border-gray-300 h-auto focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+      <div class="appearance-none items-center space-x-6 w-full px-3 py-4 border border-gray-300 h-auto focus:outline-none focus:ring-primary-blue focus:border-primary-blue flex">
       <%# only show if the path is for editing %>
         <% if group_path != group_new_path %>
           <div class="h-16 w-16">
             <% if @group.icon.attached? %>
-              <%= image_tag @group.icon, alt: "group-photo" %>
+              <%= image_tag @group.icon, alt: "group-photo", id: "preview_profile_pic_tag", class: "rounded-full h-full w-full" %>
             <% end %>
           </div>
+          <label for="profile_pic_tag">Update Icon</label>
+        <% else %>
+          <div class="h-14 w-14 rounded-full bg-gray-400">
+            <%= image_tag "mg.png", id: "preview_profile_pic_tag", class: "rounded-full h-full w-full" %>
+          </div>
+          <label for="profile_pic_tag">Upload Icon</label>
         <% end %>
-        <label class="mb-4">Update Icon</label>
-        <%= f.file_field :icon %>
+          
+        <%= f.file_field :icon, id: "profile_pic_tag", class: "hidden" %>
+        
+        </div>
       </div>
 
       <div class="flex items-center justify-center mt-16">

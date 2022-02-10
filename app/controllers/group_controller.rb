@@ -1,8 +1,9 @@
 class GroupController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, :clear_sessions
 
   def index
-    @groups = current_user.groups.includes(:entities)
+    @groups = current_user.groups.includes(:entities).order('created_at desc')
   end
 
   def show
@@ -14,12 +15,16 @@ class GroupController < ApplicationController
   end
 
   def create
-    @new_group = current_user.groups.new(group_params)
-
-    if @new_group.save
-      flash[:notice] = "New category created successfully"
-      redirect_to group_path
+    if group_params[:name] && group_params[:icon]
+      @new_group = current_user.groups.new(group_params)
+      if @new_group.save
+        flash[:notice] = "New category created successfully"
+        redirect_to group_path
+      else
+        render :new
+      end
     else
+      flash[:notice] = "Please enter a name and upload an icon to continue"
       render :new
     end
   end
