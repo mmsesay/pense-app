@@ -2,7 +2,7 @@ class EntityController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @transactions = Entite.includes(:group).order('created_at DESC').all
+    @transactions = current_user.groups.includes(:entities).order('created_at DESC').all
   end
 
   def new

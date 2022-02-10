@@ -1,4 +1,5 @@
 class GroupController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, :clear_sessions
 
   def index

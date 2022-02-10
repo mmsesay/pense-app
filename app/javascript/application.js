@@ -44,9 +44,9 @@ document.querySelectorAll('.btn-close-popup').forEach((element) => {
 
 
 // hide notice card when new notice enters
-if (typeof(notice_card) != 'undefined' && notice_card != null) {
-  setTimeout(() => { notice_card.classList.add('hidden') }, 4000)
-}
+// if (typeof(notice_card) != 'undefined' && notice_card != null) {
+//   setTimeout(() => { notice_card.classList.add('hidden') }, 4000)
+// }
 
 if (hamburger_menu_icon) {
   hamburger_menu_icon.addEventListener('click', (e) => {

@@ -23,30 +23,9 @@
       autocomplete: "email",
       placeholder: "Email",
       class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
-
-    <%# <div class="mt-5 text-center">
-      <span class="text-sm mx-3">Leave password blank if you don't want to change it</span>
-      <%= f.password_field :password, 
-        autocomplete: "off",
-        placeholder: "Password",
-        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
-      <%# <% if @minimum_password_length %>
-        <%# <em class="text-sm"><%= @minimum_password_length characters minimum</em> %>
-      <%# <% end %>
-    <%# </div> %>
-    <%# <%= f.password_field :password_confirmation,
-      autocomplete: "off",
-      placeholder: "Confirm new password",
-      class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
   </div>
 
   <div class="actions flex items-center justify-center  space-x-4 my-16 mx-3">
     <%= f.submit "UPDATE", class: "actions cursor-pointer bg-primary-green p-4 w-32 rounded-md text-white font-semibold text-center h-14" %>
-    <%= link_to "#", 
-      method: :delete do %>
-      <button type="button" class="w-auto flex text-center justify-center rounded-md border border-transparent shadow-sm p-4 h-14 bg-red-600 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
-        DELETE ACCOUNT
-      </button>
-    <% end %>
   </div>
 <% end %>
