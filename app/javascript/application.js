@@ -23,5 +23,5 @@ if (btn_close_popup) {
 
 // hide notice card when new notice enters
 if (typeof(notice_card) != 'undefined' && notice_card != null) {
-  setTimeout(() => { notice_card.style.display = 'none' }, 4000)
+  setTimeout(() => { notice_card.classList.add('hidden') }, 4000)
 }
