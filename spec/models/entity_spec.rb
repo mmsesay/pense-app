@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Entite, type: :model do
   subject do
     @user = User.new(id: 1, name: 'Jon', email: 'jon@test.com', password: '123456', confirmed_at: Time.now)
-    @group = Group.new(id: 1, name: 'Jon', icon: Rack::Test::UploadedFile.new(Rails.root.join('spec/support/test_image.jpg'), 'image/jpg'), user_id: @user.id)
+    @group = Group.new(id: 1, name: 'Group 1', icon: Rack::Test::UploadedFile.new(Rails.root.join('spec/support/test_image.jpg'), 'image/jpg'), user_id: @user.id)
     Entite.new(name: 'Transaction 0001', amount: 12.0, group_id: @group.id, user_id: @user.id)
   end
 
@@ -13,7 +13,7 @@ RSpec.describe Entite, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it 'validates the presence of the email' do
+    it 'validates the presence of the amount' do
       subject.amount = nil
       expect(subject).to_not be_valid
     end
