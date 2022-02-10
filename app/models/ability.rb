@@ -6,11 +6,11 @@ class Ability
   def initialize(user)
     if user.present?
       can :manage, :all
-    else
       can :manage, Entite, user_id: user.id
       can :manage, Group, user_id: user.id
       can :manage, User, user_id: user.id
-      # can :read, :all
+    else
+      can :read, :all
     end
 
     # Define abilities for the passed in user here. For example:
