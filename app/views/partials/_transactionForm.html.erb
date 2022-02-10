@@ -20,13 +20,11 @@
         <% end %>
 
         <div class="flex items-center justify-center mt-16">
-          <div class="actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center">
-            <% if entity_path == transactions_new_path %>
-              <%= f.submit "SAVE" %>
-            <% else %>
-              <%= f.submit "UPDATE" %>
-            <% end %>
-          </div>
+          <% if entity_path == transactions_new_path %>
+            <%= f.submit "SAVE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+          <% else %>
+            <%= f.submit "UPDATE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+          <% end %>
         </div>
       </div>
     </div>

@@ -12,11 +12,16 @@
           <%= image_tag "edit-file.svg", alt: "edit-icon", class: "h-6" %>
         <% end %>
       </span>
-      <span class="bg-gray-100 p-2 rounded-full btn-open-popup">
-        <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-6 cursor-pointer" %>
-        <%= render partial: "partials/delete_confirm_popup",
-          locals: { caller_delete_route: delete_group_path(group) } %>
+      <span class="bg-gray-100 p-2 rounded-full btn-open-cate-popup">
+        <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-6 cursor-pointer show-card-trash-bin" %>
       </span>
     </div>
   </div>
+</div>
+
+<%# popup modal %>
+<div class="confirm-category-delete hidden">
+<%= render partial: "partials/delete_confirm_popup",
+  locals: { caller_delete_route: delete_group_path(
+    @group), message: "Delete Category" } %>
 </div>

@@ -21,13 +21,11 @@
       </div>
 
       <div class="flex items-center justify-center mt-16">
-        <div class="actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center">
-          <% if group_path != group_new_path %>
-            <%= f.submit "UPDATE" %>
-          <% else %>
-            <%= f.submit "SAVE" %>
-          <% end %>
-        </div>
+        <% if group_path != group_new_path %>
+          <%= f.submit "UPDATE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+        <% else %>
+          <%= f.submit "SAVE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+        <% end %>
       </div>
     </div>
   <% end %>

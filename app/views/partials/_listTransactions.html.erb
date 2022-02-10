@@ -10,10 +10,8 @@
           <%= link_to update_transaction_path(transaction) do %>
             <%= image_tag "edit-file.svg", alt: "edit-icon", class: "h-5" %>
           <% end %>
-          </span>
-        <span class="bg-gray-100 p-2 rounded-full btn-open-popup">
-          <%= render partial: "partials/delete_confirm_popup",
-            locals: { caller_delete_route:  delete_transaction_path(transaction) } %>
+        </span>
+        <span class="bg-gray-100 p-2 rounded-full btn-open-trans-popup" id="<%= transaction.id %>">
           <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-5" %>
         </span>
         </div>
@@ -35,4 +33,9 @@
   <% else %>
     <p class="text-center font-semibold pb-2">No transactions available</p>
   <% end %>
+</div>
+
+<div class="confirm-transaction-delete hidden">
+  <%= render partial: "partials/delete_confirm_popup",
+    locals: { caller_delete_route:  nil, message: "Delete Transaction" } %>
 </div>
