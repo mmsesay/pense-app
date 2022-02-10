@@ -1,5 +1,5 @@
 <%= form_with model: @user, url: user_registration_path do |f| %>
-  <div class="h-screen">
+  <div class="h-screen fixed top-0 w-full">
     <div class="bg-primary-blue h-14 flex items-center justify-between text-white px-4">
       <button>
         <%= link_to "<-", root_path %>
@@ -11,6 +11,8 @@
         </div>
       </button>
     </div>
+
+    <%= render partial: "partials/notices" %>
 
     <div class="mt-10 text-primary-gray">
 
