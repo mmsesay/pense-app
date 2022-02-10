@@ -5,6 +5,9 @@ const btn_category_trash_icon = document.querySelector('.btn-open-cate-popup');
 const popup_for_transaction = document.querySelector('.confirm-transaction-delete');
 const popup_for_category = document.querySelector('.confirm-category-delete');
 const notice_card = document.querySelector('.notice-card');
+const menu_popup = document.querySelector('.menu-popup');
+const hamburger_menu_icon = document.querySelector('.hamburger-menu-icon')
+const close_menu_icon = document.querySelector('.close-menu-icon');
 
 if (btn_category_trash_icon) {
   btn_category_trash_icon.addEventListener('click', () => {
@@ -42,3 +45,27 @@ document.querySelectorAll('.btn-close-popup').forEach((element) => {
 if (typeof(notice_card) != 'undefined' && notice_card != null) {
   setTimeout(() => { notice_card.classList.add('hidden') }, 4000)
 }
+
+if (hamburger_menu_icon) {
+  hamburger_menu_icon.addEventListener('click', (e) => {
+    e.preventDefault();
+    menu_popup.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+}
+
+if (close_menu_icon) {
+  close_menu_icon.addEventListener('click', (e) => {
+    e.preventDefault();
+    menu_popup.classList.add('hidden');
+    document.body.style.overflow = 'scroll';
+  });
+}
+
+document.querySelectorAll('side-nav-links').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    menu_popup.classList.remove('hidden');
+    document.body.style.overflow = 'scroll';
+  });
+});
