@@ -9,9 +9,8 @@
             <%= link_to "<-", root_path, class: 'text-lg font-bold' %>
           <% end %>
         </button>
-        <p class="w-full text-center">
-          
-        </p>
+        <%= request.path %>
+        <%= render partial: "partials/pageTitle", locals: { current_page: "Category" } %>
         <button class="cursor-pointer">
           <%= button_to destroy_user_session_path, method: :delete do %>
             <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
