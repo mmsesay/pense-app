@@ -1,0 +1,32 @@
+<div class="pt-28">
+  <%= form_with model: group_model, url: group_path do |f| %>
+    <div class="mt-10 text-primary-gray">
+      <%= f.text_field :name,
+        autofocus: true,
+        autocomplete: "name",
+        placeholder: "Category Name",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <div class="appearance-none block w-full px-3 py-4 border border-gray-300 h-auto focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+      <%# only show if the path is for editing %>
+        <% if group_path != group_new_path %>
+          <div class="h-16 w-16">
+            <% if @group.icon.attached? %>
+              <%= image_tag @group.icon, alt: "group-photo" %>
+            <% end %>
+          </div>
+        <% end %>
+        <label class="mb-4">Update Icon</label>
+        <%= f.file_field :icon %>
+      </div>
+
+      <div class="flex items-center justify-center mt-16">
+        <% if group_path != group_new_path %>
+          <%= f.submit "UPDATE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+        <% else %>
+          <%= f.submit "SAVE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

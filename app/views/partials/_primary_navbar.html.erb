@@ -1,0 +1,147 @@
+<% if user_signed_in? %>
+<div class="fixed top-0 z-20 w-full">
+  <div class="bg-primary-blue h-auto py-5">
+    <div class="flex items-center justify-between text-white px-4">
+      <button>
+        <% if request.path == group_path || request.path == transactions_path %>
+          <%= image_tag "hamburger-menu.svg", alt: "group-photo", class: "h-5 hamburger-menu-icon" %>
+        <% else %>
+          <%= link_to "<-", root_path, class: 'text-lg font-bold' %>
+        <% end %>
+      </button>
+      <p class="w-full text-center">
+        <% if request.path == group_path %>
+          CATEGORIES
+        <% elsif request.path == group_new_path %>
+          CREATE A CATEGORY
+        <% elsif request.path == transactions_path %>
+          TRANSACTIONS
+        <% elsif request.path == transactions_new_path %>
+          CREATE A TRANSACTION
+        <% elsif request.path == update_group_path %>
+          EDITING CATEGORY
+        <% elsif request.path == update_transaction_path %>
+          EDITING TRANSACTION
+        <% else %>
+          DETAILS
+        <% end %>
+      </p>
+      <button class="cursor-pointer">
+        <%= button_to destroy_user_session_path, method: :delete do %>
+          <%= image_tag "exit-sign.svg", alt: "group-photo", class: "h-5" %>
+        <% end %>
+      </button>
+    </div>
+  </div>
+
+  <%# show group card if on group page %>
+  <% if request.path == group_path %>
+    <div class="shadow-xl h-14 flex items-center justify-between px-4 bg-white">
+      <p class="text-gray-500">Hello, <%= current_user.name%></p>
+      <p class="text-gray-700 font-semibold"></p>
+    </div>
+  <% end %>
+
+  <%# show gift card if on transaction page %>
+  <% if request.path == transactions_path %>
+    <div class="bg-white shadow-xl h-14 flex items-center justify-between px-4">
+      <p class="text-gray-500">Gift credit</p>
+      <p class="text-gray-700 font-semibold">$<%= @transactions.sum(:amount) || 0 %></p>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+
+<div class="fixed z-30 bg-primary-blue inset-0 overflow-y-hidden menu-popup hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="pt-4 px-4 pb-20 text-center">
+    <div class="flex justify-end h-auto">
+      <button type="button" class="bg-white flex items-center justify-center rounded-md text-primary-blue h-8 w-8 text-center close-menu-icon">
+        <span class="sr-only">Close</span>
+        <!-- Heroicon name: outline/x -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <% if current_user %>
+    <div class="mb-10">
+      <div class="flex flex-col py-2 my-3 items-center justify-center text-white">
+        <div class="h-28 w-28">
+          <%= image_tag "macdonalds.png", class: "rounded-full" %>
+        </div>
+        <div class="text-2xl mt-4">
+          <p><%= current_user.name %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <ul class="flex flex-col space-y-5 text-gray-300">
+      <li class="flex items-center h-auto space-x-5">
+        <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
+          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+        </div>
+        <div class="w-full side-nav-links">
+          <p class="flex justify-start">Account Settings</p>
+          <div class="border-b border-gray-300 mt-3"></div>
+        </div>
+      </li>
+      <li class="flex items-center h-auto space-x-5">
+        <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
+          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+        </div>
+        <div class="w-full side-nav-links">
+          <%= link_to group_new_path do %>
+            <p class="flex justify-start">Add Category</p>
+            <div class="border-b border-gray-300 mt-3"></div>
+          <% end %>
+        </div>
+      </li>
+      <li class="flex items-center h-auto space-x-5">
+        <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
+          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+        </div>
+        <div class="w-full side-nav-links">
+          <%= link_to transactions_new_path do %>
+            <p class="flex justify-start">Account Transaction</p>
+            <div class="border-b border-gray-300 mt-3"></div>
+          <% end %>
+        </div>
+      </li>
+      <li class="flex items-center h-auto space-x-5">
+        <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
+          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+        </div>
+        <div class="w-full side-nav-links">
+          <%= link_to group_path do %>
+            <p class="flex justify-start">View Categories</p>
+            <div class="border-b border-gray-300 mt-3"></div>
+          <% end %>
+        </div>
+      </li>
+      <li class="flex items-center h-auto space-x-5">
+        <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
+          <%= image_tag "settings-gear.svg", class: "h-5 w-6" %>
+        </div>
+        <div class="w-full side-nav-links">
+          <%= link_to transactions_path do %>
+            <p class="flex justify-start">View Transactions</p>
+            <div class="border-b border-gray-300 mt-3"></div>
+          <% end %>
+        </div>
+      </li>
+      <li class="flex items-center h-auto space-x-5">
+        <div class="h-8 w-10 border border-gray-300 rounded-full flex items-center justify-center">
+          <%= image_tag "exit-sign.svg", class: "h-5 w-6" %>
+        </div>
+        <div class="w-full side-nav-links">
+          <%= button_to destroy_user_session_path, method: :delete, class: "flex justify-start" do %>
+            <p>Logout</p>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

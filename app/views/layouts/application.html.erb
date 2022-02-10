@@ -10,7 +10,9 @@
   </head>
 
   <body>
-    <main>
+    <main class="bg-gray-200 h-auto">
+      <%= render "partials/primary_navbar" %>
+      <%= render partial: "partials/notices" %>
       <%= yield %>     
     </main>
   </body>

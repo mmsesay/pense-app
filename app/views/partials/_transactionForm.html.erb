@@ -1,0 +1,32 @@
+<div class="pt-28">
+  <%= form_with model: entity_model, url: entity_path do |f| %>
+    <div class="">
+      <div class="mt-10 text-primary-gray">
+        <%= f.text_field :name,
+          autofocus: true,
+          autocomplete: "name",
+          placeholder: "Transaction name",
+          class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+        <%= f.number_field :amount,
+          autofocus: true,
+          placeholder: "Transaction amount",
+          class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+        <% if session[:is_transaction_triggered_from_detail] == nil %>
+          <%= f.collection_select :group_id, groups, :id, :name,
+            include_blank: 'Select a category',
+            class: "appearance-none block w-screen px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+        <% end %>
+
+        <div class="flex items-center justify-center mt-16">
+          <% if entity_path == transactions_new_path %>
+            <%= f.submit "SAVE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+          <% else %>
+            <%= f.submit "UPDATE", class: "actions cursor-pointer bg-primary-green p-4 w-48 rounded-md text-white font-semibold text-center" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
