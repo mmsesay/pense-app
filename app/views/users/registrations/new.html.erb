@@ -1,5 +1,5 @@
 <%= form_with model: @user, url: user_registration_path do |f| %>
-  <div>
+  <div class="h-screen">
     <div class="bg-primary-blue h-14 flex items-center justify-between text-white px-4">
       <button>
         <%= link_to "<-", root_path %>
@@ -14,7 +14,7 @@
 
     <div class="mt-10 text-primary-gray">
 
-      <div class="appearance-none block w-full px-3 py-2 border border-gray-300 h-24 focus:outline-none focus:ring-primary-blue focus:border-primary-blue flex items-center space-x-10 px-2">
+      <div class="appearance-none w-full px-3 py-2 border border-gray-300 h-24 focus:outline-none focus:ring-primary-blue focus:border-primary-blue flex items-center space-x-10">
         <div class="h-14 w-14 rounded-full bg-gray-400">
           <%= image_tag "user-gray.png", id: "preview_profile_pic_tag", class: "rounded-full h-full w-full" %>
         </div>

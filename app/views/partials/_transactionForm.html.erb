@@ -1,5 +1,7 @@
-<div class="pt-28">
+<div class="bg-gray h-screen">
   <%= form_with model: entity_model, url: entity_path do |f| %>
+    <%= render "users/shared/error_messages", resource: entity_model %>
+
     <div class="">
       <div class="mt-10 text-primary-gray">
         <%= f.text_field :name,
