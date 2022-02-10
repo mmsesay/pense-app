@@ -13,9 +13,9 @@
         <% end %>
       </span>
       <span class="bg-gray-100 p-2 rounded-full btn-open-popup">
-          <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-6 cursor-pointer" %>
-          <%= render partial: "partials/delete_confirm_popup",
-            locals: { caller_delete_route: delete_group_path(group) } %>
+        <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-6 cursor-pointer" %>
+        <%= render partial: "partials/delete_confirm_popup",
+          locals: { caller_delete_route: delete_group_path(group) } %>
       </span>
     </div>
   </div>

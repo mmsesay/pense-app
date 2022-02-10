@@ -16,8 +16,9 @@ if (btn_open_popup) {
 
 if (btn_close_popup) {
   btn_close_popup.addEventListener('click', () => {
-    document.body.style.overflow = 'scroll';
+    window.location.reload();
     popup_modal.classList.add('hidden');
+    document.body.style.overflow = 'scroll';
   });
 }
 
