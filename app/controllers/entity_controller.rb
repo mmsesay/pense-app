@@ -25,10 +25,10 @@ class EntityController < ApplicationController
     end
 
     if @new_transaction.save
-
       flash[:notice] = "New transcation added successfully"
       redirect_to single_group_path(@new_transaction.group_id)
     else
+      @groups = Group.all
       render :new
     end
   end
@@ -69,5 +69,17 @@ class EntityController < ApplicationController
 
   def transaction_params
     params.require(:entite).permit(:name, :amount, :group_id)
+  end
+
+  def params_valid
+    if transaction_params_without_group_id[:name] && transaction_params_without_group_id[:amount]
+      true
+    elsif transaction_params[:name] && transaction_params[:amount] && transaction_params[:group_id]
+      true
+    else
+      flash[:notice] = "Please enter a name and an amount to continue"
+      @groups = Group.all
+      render :new
+    end
   end
 end
