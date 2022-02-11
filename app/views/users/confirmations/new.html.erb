@@ -1,0 +1,30 @@
+<h2>Resend confirmation instructions</h2>
+
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <div class="h-screen fixed top-0 w-full">
+    <div class="bg-primary-blue h-14 flex items-center justify-between text-white px-4">
+      <button>
+        <%= link_to "<-", root_path %>
+      </button>
+      <p>RESEND CONFIRMATION</p>
+      <button>
+        <div class="actions">
+          <%= f.submit "Resend", class: 'cursor-pointer' %>
+        </div>
+      </button>
+    </div>
+
+    <%= render partial: "partials/notices" %>
+    <div class="mt-10 text-primary-gray">
+
+      <%= render "users/shared/error_messages", resource: resource %>
+
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter your email",
+        value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+      </div>
+        <%= render "users/shared/links" %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,36 @@
+<%= form_with model: @user, url: user_session_path do |f| %>
+  <div class="h-screen fixed top-0 w-full">
+    <div class="bg-primary-blue h-14 flex items-center justify-between text-white px-4">
+      <button>
+        <%= link_to "<-", root_path %>
+      </button>
+      <p>LOGIN</p>
+      <button>
+        <div class="actions">
+          <%= f.submit "Log in", class: 'cursor-pointer' %>
+        </div>
+      </button>
+    </div>
+
+    <%= render partial: "partials/notices" %>
+
+    <div class="mt-10 text-primary-gray">
+      <%= f.email_field :email,
+        autofocus: true,
+        autocomplete: "email",
+        placeholder: "Email",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <%= f.password_field :password, 
+        autocomplete: "current-password",
+        placeholder: "Password",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+        <p class="text-center mt-10">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+          <% end %>
+        </p>
+    </div>
+  </div>
+<% end %>

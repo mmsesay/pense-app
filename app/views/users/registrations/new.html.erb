@@ -1,0 +1,52 @@
+<%= form_with model: @user, url: user_registration_path do |f| %>
+  <div class="h-screen fixed top-0 w-full">
+    <div class="bg-primary-blue h-14 flex items-center justify-between text-white px-4">
+      <button>
+        <%= link_to "<-", root_path %>
+      </button>
+      <p>REGISTER</p>
+      <button>
+        <div class="actions">
+          <%= f.submit "Next", class: 'cursor-pointer' %>
+        </div>
+      </button>
+    </div>
+
+    <%= render partial: "partials/notices" %>
+
+    <div class="mt-10 text-primary-gray">
+
+      <div class="appearance-none w-full px-3 py-2 border border-gray-300 h-24 focus:outline-none focus:ring-primary-blue focus:border-primary-blue flex items-center space-x-10">
+        <div class="h-14 w-14 rounded-full bg-gray-400">
+          <%= image_tag "user-gray.png", id: "preview_profile_pic_tag", class: "rounded-full h-full w-full" %>
+        </div>
+
+        <%= f.file_field :profile_pic, id: "profile_pic_tag", class: "hidden" %>
+        <label for="profile_pic_tag">Upload picture</label>
+
+      </div>
+
+      <%= f.text_field :name,
+        autofocus: true,
+        autocomplete: "name",
+        placeholder: "Full name",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <%= f.email_field :email,
+        autofocus: true,
+        autocomplete: "email",
+        placeholder: "Email",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <%= f.password_field :password, 
+        autocomplete: "current-password",
+        placeholder: "Password",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+
+      <%= f.password_field :password_confirmation,
+        autocomplete: "new-password",
+        placeholder: "Confirm Password",
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 h-14 focus:outline-none focus:ring-primary-blue focus:border-primary-blue" %>
+    </div>
+  </div>
+<% end %>

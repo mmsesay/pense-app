@@ -1,0 +1,27 @@
+<div class="flex mb-2">
+  <div class="h-16 w-16">
+    <% if group.icon.attached? %>
+      <%= image_tag group.icon, alt: "group-photo" %>
+    <% end %>
+  </div>
+  <div class="flex flex-col justify-between ml-5">
+    <p class="text-gray-500 mb-2"><%= group.name %></p>
+    <div class="flex space-x-8">
+      <span class="bg-gray-100 p-2 rounded-full">
+        <%= link_to update_group_path(group) do %>
+          <%= image_tag "edit-file.svg", alt: "edit-icon", class: "h-6" %>
+        <% end %>
+      </span>
+      <span class="bg-gray-100 p-2 rounded-full btn-open-cate-popup">
+        <%= image_tag "trash-bin.svg", alt: "trash-icon", class: "h-6 cursor-pointer show-card-trash-bin" %>
+      </span>
+    </div>
+  </div>
+</div>
+
+<%# popup modal %>
+<div class="confirm-category-delete hidden">
+<%= render partial: "partials/delete_confirm_popup",
+  locals: { caller_delete_route: delete_group_path(
+    @group), message: "Delete Category" } %>
+</div>

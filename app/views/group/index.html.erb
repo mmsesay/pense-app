@@ -1,0 +1,7 @@
+<% session[:current_page] = "CATEGORY" %>
+
+<%# pass all groups to the display show card %>
+<%= render partial: "partials/showCard", locals: { view: "group", data: @groups } %>
+
+<%# add new category button section %>
+<%= render partial: "partials/addCategoryButton" %>

@@ -1,0 +1,16 @@
+<% session[:current_page] = "DETAILS" %>
+<div class="pb-36">
+  <div class="py-2 px-3">
+    <div class="bg-white rounded h-auto p-2 space-x-3 shadow-m">
+
+      <%# category section %>
+      <%= render partial: "partials/categoryShowCard", locals: { group: @group } %>
+      
+      <%# list of transactions for a single group %>
+      <%= render partial: "partials/listTransactions", locals: { group: @group } %>
+    </div>
+  </div>
+</div>
+
+<%# Add transaction button %>
+<%= render partial: "partials/addTransactionButton", locals: { addSessionVariable: true, group_id: @group.id } %>
